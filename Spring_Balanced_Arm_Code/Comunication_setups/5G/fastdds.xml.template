@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+	<transport_descriptors>
+		<transport_descriptor>
+			<transport_id>CustomUdpTransportv6</transport_id>
+			<type>UDPv6</type>
+			<interfaceWhiteList>
+				<address>DISCOVERY_SERVER_IP</address>
+			</interfaceWhiteList>
+		</transport_descriptor>
+	</transport_descriptors>
+	<participant profile_name="participant_client" is_default_profile="true">
+		<rtps>
+			<userTransports>
+				<transport_id>CustomUdpTransportv6</transport_id>
+			</userTransports>
+			<useBuiltinTransports>false</useBuiltinTransports>
+			<builtin>
+				<discovery_config>
+					<discoveryProtocol>SUPER_CLIENT</discoveryProtocol>
+					<discoveryServersList>
+						<RemoteServer prefix="44.53.00.5f.45.50.52.4f.53.49.4d.42">
+							<metatrafficUnicastLocatorList>
+								<locator>
+									<udpv6>
+										<address>DISCOVERY_SERVER_IP</address>
+										<port>DISCOVERY_SERVER_PORT</port>
+									</udpv6>
+								</locator>
+							</metatrafficUnicastLocatorList>
+						</RemoteServer>
+					</discoveryServersList>
+				</discovery_config>
+			</builtin>
+		</rtps>
+	</participant>
+	<participant profile_name="discovery_server" is_default_profile="false">
+		<rtps>
+			<prefix>44.53.00.5f.45.50.52.4f.53.49.4d.42</prefix>
+			<userTransports>
+				<transport_id>CustomUdpTransportv6</transport_id>
+			</userTransports>
+			<useBuiltinTransports>false</useBuiltinTransports>
+			<builtin>
+				<discovery_config>
+					<discoveryProtocol>SERVER</discoveryProtocol>
+				</discovery_config>
+				<metatrafficUnicastLocatorList>
+					<locator>
+						<udpv6>
+							<!-- placeholder server UDP address -->
+							<address>DISCOVERY_SERVER_IP</address>
+							<port>DISCOVERY_SERVER_PORT</port>
+						</udpv6>
+					</locator>
+				</metatrafficUnicastLocatorList>
+			</builtin>
+		</rtps>
+	</participant>
+</profiles>
+
